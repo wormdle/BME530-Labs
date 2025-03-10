@@ -1,0 +1,112 @@
+%% COM acceleration calculation
+clear
+clc
+
+loadedData = load('BME530 Lab 1a - Walking.mat');
+b = loadedData.GRF;
+GRF_L = loadedData.GRF.L;
+GRF_R = loadedData.GRF.R;
+
+%Generates figure for Gait Cycle in X-direction
+figure
+a = b.L;
+c = b.R;
+plot (a(:,1));
+hold on;
+plot (c(:,1));
+legend('Left Foot Data','Right Foot Data')
+xlim([4000 10600]);
+xlabel('Gait Cycle','FontSize', 20); % Label for the x-axis
+ylabel('Ground Reaction Forces in Anterior-Posterior (X) direction','FontSize', 20); % Label for the y-axis
+
+
+%Butterworth Filter for Left Foot
+dt = 1/1200; 
+lpcutoff = 0.15; % cut off freq of 0.15Hz
+norder = 4; % order of 4
+nGRF_L = GRF_L(:,1); % isolates data by column x
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'high');
+fnGRF_L = filtfilt(num,den,nGRF_L);
+figure;plot(nGRF_L);hold;plot(fnGRF_L)
+title('Unfiltered vs. Filtered Data for Left Foot GRF Data in Specified Gait Cycle','FontSize', 15);
+legend('Unfiltered','Filtered');
+xlim([5260 6100]); % for isolated view of data to see filtered vs unfiltered
+xlabel('Gait Cycle for Left Foot','FontSize', 15); % Label for the x-axis
+ylabel('GRF in Anterior-Posterior (X) Direction','FontSize', 15); % Label for the y-axis
+fnGRF_L_onecycle = fnGRF_L(5260:6100);
+
+%Butterworth Filter for Right Foot
+dt = 1/1200; 
+lpcutoff = 0.15; % cut off freq of 0.15Hz
+norder = 4; % order of 4
+nGRF_R = GRF_R(:,1); % isolates data by column x
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'high');
+fnGRF_R = filtfilt(num,den,nGRF_R);
+figure;plot(nGRF_R);hold;plot(fnGRF_R)
+title('Unfiltered vs. Filtered Data for Right Foot GRF Data in Specified Gait Cycle','FontSize', 15);
+legend('Unfiltered','Filtered');
+xlim([5260 6100]); % for isolated view of data to see filtered vs unfiltered
+xlabel('Gait Cycle for Right Foot','FontSize', 15); % Label for the x-axis
+ylabel('GRF in Anterior-Posterior (X) Direction','FontSize', 15); % Label for the y-axis
+fnGRF_R_onecycle = fnGRF_R(5260:6100);
+
+filtered_sum = fnGRF_R_onecycle + fnGRF_L_onecycle;
+figure
+plot(filtered_sum);
+hold on;
+plot(fnGRF_L_onecycle);
+hold on;
+plot(fnGRF_R_onecycle);
+legend('Filtered Sum','Filtered Left Foot Data','Filtered Right Foot Data');
+xlabel('Time','FontSize', 15); % Label for the x-axis
+ylabel('Filtered GRF in Anterior-Posterior (X) Direction','FontSize', 15); % Label for the y-axis
+
+
+%% COM acceleration comparison
+mass = loadedData.subject.m.total;
+filtered_COM_acceleration = filtered_sum/mass;
+
+COM = loadedData.COM;
+dt_COM = 1/120;
+
+COM_acceleration = second_deriv_approx(COM(:,1),dt_COM);
+COM_acceleration_onecycle = COM_acceleration(5260:6100);
+
+figure
+plot(filtered_COM_acceleration);
+hold on;
+plot(COM_acceleration_onecycle);
+legend('COM Acceleration from Filtered GRF','COM Acceleration from 2nd Derivative of COM Data');
+xlabel('Index','FontSize', 15); % Label for the x-axis
+ylabel('COM Acceleration','FontSize', 15); % Label for the y-axis
+
+%% COM velocity comparison
+filteredsum_timing = dt:dt:841*dt;
+
+COM_velocity = first_deriv_approx(COM(:,1),dt_COM);
+COM_velocity_onecycle = COM_velocity(5260:6100);
+
+filtered_COM_velocity = cumtrapz(filteredsum_timing,filtered_COM_acceleration-mean(filtered_COM_acceleration));
+
+
+figure
+plot(filtered_COM_velocity);
+hold on;
+plot(COM_velocity_onecycle);
+legend('COM Velocity from Filtered GRF','COM Velocity from 1st Derivative of COM Data');
+xlabel('Index','FontSize', 15); % Label for the x-axis
+ylabel('COM Velocity','FontSize', 15); % Label for the y-axis
+
+%% COM displacement from filtered data
+filtered_COM_displacement = cumtrapz(filteredsum_timing,filtered_COM_velocity-mean(filtered_COM_velocity))+COM(5260);
+
+COM_x = COM(:,1);
+COM_displacement_onecycle = COM_x(5260:6100);
+
+figure
+plot(filtered_COM_displacement);
+hold on;
+plot(COM_displacement_onecycle);
+legend('COM Displacement from Filtered GRF','COM Displacement from COM Data');
+xlabel('Index','FontSize', 15); % Label for the x-axis
+ylabel('COM Displacement','FontSize', 15); % Label for the y-axis
