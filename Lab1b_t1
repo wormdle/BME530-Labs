@@ -1,0 +1,187 @@
+%% 5 gait cycles
+clear
+clc
+
+loadedData = load('BME530 Lab 1a - Walking.mat');
+b = loadedData.GRF;
+
+%Generates figure for Foot data in vertical direction
+figure
+a = b.L;
+c = b.R;
+plot (a(:,3));
+hold on
+plot (c(:,3));
+legend('Left Foot Data','Right Foot Data')
+xlim([4000 10600]);
+%ylim([-10 850])
+xlabel('Gait Cycle','FontSize', 20); % Label for the x-axis
+ylabel('Ground Reaction Forces in Vertical (Z) direction','FontSize', 20); % Label for the y-axis
+
+%Generates figure for Left Foot data in vertical direction
+figure
+plot (a(:,3));
+xlim([4000 10600]);
+ylim([-10 850])
+xlabel('Gait Cycles for Left Foot','FontSize', 20); % Label for the x-axis
+ylabel('Ground Reaction Forces in Vertical (Z) direction','FontSize', 20); % Label for the y-axis
+
+%Generates figure for Right Foot data in vertical direction
+figure
+plot (c(:,3));
+xlim([4000 10600]);
+ylim([-10 850])
+xlabel('Gait Cycles for Right Foot','FontSize', 20); % Label for the x-axis
+ylabel('Ground Reaction Forces in Vertical (Z) direction','FontSize', 20); % Label for the y-axis
+
+%% Time-series plot
+clear
+clc
+
+loadedData = load('BME530 Lab 1a - Walking.mat');
+b = loadedData.GRF;
+
+%Generates figure for Left Foot data in vertical direction
+figure
+a = b.L;
+d = a(:,3);
+x1 = (100/(5465-4660))*(1:5465-4660+1);
+x2 = (100/(6760-5890))*(1:6760-5890+1);
+x3 = (100/(8045-7195))*(1:8045-7195+1);
+x4 = (100/(9285-8465))*(1:9285-8465+1);
+x5 = (100/(10530-9690))*(1:10530-9690+1);
+plot (x1,d(4660:5465));
+hold on
+plot (x2,d(5890:6760));
+hold on
+plot (x3,d(7195:8045));
+hold on
+plot (x4,d(8465:9285));
+hold on
+plot (x5,d(9690:10530));
+xlim([0 100]);
+ylim([-10 850]);
+xlabel('% Gait','FontSize', 20); % Label for the x-axis
+ylabel('Left Foot GRF in Vertical (Z) direction','FontSize', 20);
+hold on
+
+
+%Generates figure for Right Foot data in vertical direction
+figure
+c = b.R;
+e = c(:,3);
+x1 = (100/(4850-4100))*(1:4850-4100+1);
+x2 = (100/(6100-5265))*(1:6100-5265+1);
+x3 = (100/(7410-6530))*(1:7410-6530+1);
+x4 = (100/(8685-7820))*(1:8685-7820+1);
+x5 = (100/(9905-9080))*(1:9905-9080+1);
+plot (x1,e(4100:4850));
+hold on
+plot (x2,e(5265:6100));
+hold on
+plot (x3,e(6530:7410));
+hold on
+plot (x4,e(7820:8685));
+hold on
+plot (x5,e(9080:9905));
+xlim([0 100]);
+ylim([-10 850]);
+xlabel('% Gait','FontSize', 20); % Label for the x-axis
+ylabel('Right Foot GRF in Vertical (Z) direction','FontSize', 20);
+hold on
+
+
+%Generates figure for Left Foot data in medial-lateral direction
+figure
+a = b.L;
+d = a(:,2);
+x1 = (100/(5365-4695))*(1:5365-4695+1);
+x2 = (100/(6645-5895))*(1:6645-5895+1);
+x3 = (100/(7935-7240))*(1:7935-7240+1);
+x4 = (100/(9180-8500))*(1:9180-8500+1);
+x5 = (100/(10420-9740))*(1:10420-9740+1);
+plot (x1,d(4695:5365));
+hold on
+plot (x2,d(5895:6645));
+hold on
+plot (x3,d(7240:7935));
+hold on
+plot (x4,d(8500:9180));
+hold on
+plot (x5,d(9740:10420));
+xlim([0 100]);
+xlabel('% Gait','FontSize', 20); % Label for the x-axis
+ylabel('Left Foot GRF in Medial-Lateral (Y) direction','FontSize', 20);
+hold on
+
+%Generates figure for Right Foot data in medial-lateral direction
+figure
+c = b.R;
+e = c(:,2);
+x1 = (100/(4775-4085))*(1:4775-4085+1);
+x2 = (100/(6020-5300))*(1:6020-5300+1);
+x3 = (100/(7320-6570))*(1:7320-6570+1);
+x4 = (100/(8590-7875))*(1:8590-7875+1);
+x5 = (100/(9810-9125))*(1:9810-9125+1);
+plot (x1,e(4085:4775));
+hold on
+plot (x2,e(5300:6020));
+hold on
+plot (x3,e(6570:7320));
+hold on
+plot (x4,e(7875:8590));
+hold on
+plot (x5,e(9125:9810));
+xlim([0 100]);
+ylim([-40 90]);
+xlabel('% Gait','FontSize', 20); % Label for the x-axis
+ylabel('Right Foot GRF in Medial-Lateral (Y) direction','FontSize', 20);
+hold on
+
+
+%Generates figure for Left Foot data in anterior-posterior direction
+figure
+a = b.L;
+d = a(:,1);
+x1 = (100/(5445-4655))*(1:5445-4655+1);
+x2 = (100/(6770-5890))*(1:6770-5890+1);
+x3 = (100/(8065-7210))*(1:8065-7210+1);
+x4 = (100/(9270-8465))*(1:9270-8465+1);
+x5 = (100/(10570-9700))*(1:10570-9700+1);
+plot (x1,d(4655:5445));
+hold on
+plot (x2,d(5890:6770));
+hold on
+plot (x3,d(7210:8065));
+hold on
+plot (x4,d(8465:9270));
+hold on
+plot (x5,d(9700:10570));
+xlim([0 100]);
+xlabel('% Gait','FontSize', 20); % Label for the x-axis
+ylabel('Left Foot GRF in Anterior-Posterior (X) direction','FontSize', 20);
+hold on
+
+
+%Generates figure for Right Foot data in anterior-posterior direction
+figure
+c = b.R;
+e = c(:,1);
+x1 = (100/(4870-4100))*(1:4870-4100+1);
+x2 = (100/(6105-5245))*(1:6105-5245+1);
+x3 = (100/(7415-6535))*(1:7415-6535+1);
+x4 = (100/(8710-7790))*(1:8710-7790+1);
+x5 = (100/(9930-9065))*(1:9930-9065+1);
+plot (x1,e(4100:4870));
+hold on
+plot (x2,e(5245:6105));
+hold on
+plot (x3,e(6535:7415));
+hold on
+plot (x4,e(7790:8710));
+hold on
+plot (x5,e(9065:9930));
+xlim([0 100]);
+xlabel('% Gait','FontSize', 20); % Label for the x-axis
+ylabel('Right Foot GRF in Anterior-Posterior (X) direction','FontSize', 20);
+hold on
