@@ -1,0 +1,124 @@
+%% Gait Cycle
+clear
+clc
+
+loadedData = load('BME530 Lab 1a - Task 1.mat');
+b = loadedData.marker;
+
+%Generates figure for Left Toe data
+figure
+a = b.L;
+toe_L_position = a.Toe;
+plot (toe_L_position(:,3));
+xlim([0 1500]);
+xlabel('Sample Index','FontSize', 10); % Label for the x-axis
+ylabel('Displacement of Left Foot','FontSize', 10); % Label for the y-axis
+
+%Generates figure for Right Toe data
+figure
+c = b.R;
+toe_R_position = c.Toe;
+plot (toe_R_position(:,3));
+xlim([0 1500]);
+xlabel('Sample Index','FontSize', 10); % Label for the x-axis
+ylabel('Displacement for Right Foot','FontSize', 10); % Label for the y-axis
+
+%Generates figure for Left Ankle data
+figure
+ankle_L_position = a.Ankle;
+plot (ankle_L_position(:,3));
+xlim([0 1500]);
+xlabel('Sample Index','FontSize', 10); % Label for the x-axis
+ylabel('Displacement of Left Ankle','FontSize', 10); % Label for the y-axis
+
+%Generates figure for Right Ankle data
+figure
+ankle_R_position = c.Ankle;
+plot (ankle_R_position(:,3));
+xlim([0 1500]);
+ylim([30 220]);
+xlabel('Sample Index','FontSize', 10); % Label for the x-axis
+ylabel('Displacement for Right Ankle','FontSize', 10); % Label for the y-axis
+
+%Generates figure for COM data in the Y direction (left and right movement)
+figure
+COM = loadedData.COM;
+plot (COM(:,1));
+xlim([0 500]);
+xlabel('Sample Index','FontSize', 10); % Label for the x-axis
+ylabel('COM Displacement in the Y Axis','FontSize', 10); % Label for the y-axis
+
+%% Filtering
+% Butterworth Low pass Filter
+clear
+clc
+
+loadedData = load('BME530 Lab 1a - Task 1.mat');
+COM = loadedData.COM;
+
+dt = 0.005; % 1/200 = 5 msec
+lpcutoff = 10; % cut off freq of 10Hz
+norder = 4; % order of 4
+nCOM = COM(:,1); % isolates data by column x, y, z
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+fnCOM = filtfilt(num,den,nCOM);
+figure;plot(nCOM);hold;plot(fnCOM)
+title('Unfiltered vs. Filtered Data for X-Direction','FontSize', 15);
+legend('Unfiltered','Filtered');
+%xlim([0 1000]); % for isolated view of data to see filtered vs unfiltered
+xlabel('Sample Index','FontSize', 15); % Label for the x-axis
+ylabel('COM Displacement','FontSize', 15); % Label for the y-axis
+
+
+
+% Welch's Method
+
+unfiltered_COM = nCOM;
+filtered_COM = fnCOM;
+
+fs=200;
+window=2^7;
+nfft=2^7;
+noverlap=2^6;
+[PSD_unfiltered_COM,f]=pwelch(unfiltered_COM,window,noverlap,nfft,fs);
+figure
+loglog(f,PSD_unfiltered_COM);
+title('Unfiltered vs. Filtered Data for X-Direction','FontSize', 15);
+xlabel('Frequency','FontSize', 15); % Label for the x-axis
+ylabel('PSD','FontSize', 15); % Label for the y-axis
+
+[PSD_filtered_COM,g]=pwelch(filtered_COM,window,noverlap,nfft,fs);
+hold on % plots both datasets together
+loglog(f,PSD_filtered_COM);
+legend('Unfiltered','Filtered');
+
+%% Residual Method
+clear
+clc
+
+loadedData = load('BME530 Lab 1a - Task 1.mat');
+COM = loadedData.COM;
+
+fs = 200; 
+dt = 0.005; % 1/200 = 5 msec
+rawData = COM(:,3);
+
+cutOffFreqs = 1:0.5:20;
+order = 4; 
+residuals = zeros(size(cutOffFreqs)); 
+
+for i = 1:length(cutOffFreqs)
+    [b, a] = butter(order, 2*cutOffFreqs(i)/(1.0/dt), 'low');
+   
+    filteredData = filtfilt(b, a, rawData);
+   
+    residuals(i) = sqrt(mean((rawData - filteredData).^2)); 
+end
+
+figure;
+plot(cutOffFreqs, residuals, '-o', 'LineWidth', 1.5);
+ylim([0 10])
+xlabel('Cut-off Frequency (Hz)');
+ylabel('Root Mean Squared Residual');
+title('Residual Method for Determining Cut-off Frequency');
+grid on;
