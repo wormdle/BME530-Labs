@@ -1,0 +1,490 @@
+%% Task 1.1 bicep
+clear
+clc
+
+bicep_0 = load('task1_bicep_0.mat');
+bicep_0_data = bicep_0.data;
+demeaned_bicep_0 = bicep_0_data - mean(bicep_0_data);
+rectified_bicep_0 = abs(demeaned_bicep_0);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_bicep_0 = filtfilt(num,den,rectified_bicep_0);
+figure;plot(rectified_bicep_0);
+title('Rectified EMG Data for Bicep at 0% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 15); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_bicep_0,'r');
+title('Enveloped EMG Data for Bicep at 0% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+bicep_25 = load('task1_bicep_25.mat');
+bicep_25_data = bicep_25.data;
+demeaned_bicep_25 = bicep_25_data - mean(bicep_25_data);
+rectified_bicep_25 = abs(demeaned_bicep_25);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_bicep_25 = filtfilt(num,den,rectified_bicep_25);
+figure;plot(rectified_bicep_25);
+title('Rectified EMG Data for Bicep at 25% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_bicep_25,'r');
+title('Enveloped EMG Data for Bicep at 25% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+bicep_50 = load('task1_bicep_50.mat');
+bicep_50_data = bicep_50.data;
+demeaned_bicep_50 = bicep_50_data - mean(bicep_50_data);
+rectified_bicep_50 = abs(demeaned_bicep_50);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_bicep_50 = filtfilt(num,den,rectified_bicep_50);
+figure;plot(rectified_bicep_50);
+title('Rectified EMG Data for Bicep at 50% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_bicep_50,'r');
+title('Enveloped EMG Data for Bicep at 50% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+bicep_75 = load('task1_bicep_75.mat');
+bicep_75_data = bicep_75.data;
+demeaned_bicep_75 = bicep_75_data - mean(bicep_75_data);
+rectified_bicep_75 = abs(demeaned_bicep_75);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_bicep_75 = filtfilt(num,den,rectified_bicep_75);
+figure;plot(rectified_bicep_75);
+title('Rectified EMG Data for Bicep at 75% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_bicep_75,'r');
+title('Enveloped EMG Data for Bicep at 75% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+bicep_100 = load('task1_bicep_100.mat');
+bicep_100_data = bicep_100.data;
+demeaned_bicep_100 = bicep_100_data - mean(bicep_100_data);
+rectified_bicep_100 = abs(demeaned_bicep_100);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_bicep_100 = filtfilt(num,den,rectified_bicep_100);
+figure;plot(rectified_bicep_100);
+title('Rectified EMG Data for Bicep at 100% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_bicep_100,'r');
+title('Enveloped EMG Data for Bicep at 100% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+%% Task 1.1 tricep
+tricep_25 = load('task1_tricep_25.mat');
+tricep_25_data = tricep_25.data;
+demeaned_tricep_25 = tricep_25_data - mean(tricep_25_data);
+rectified_tricep_25 = abs(demeaned_tricep_25);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_tricep_25 = filtfilt(num,den,rectified_tricep_25);
+figure;plot(rectified_tricep_25);
+title('Rectified EMG Data for Tricep at 25% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_tricep_25,'r');
+title('Enveloped EMG Data for Tricep at 25% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+tricep_50 = load('task1_tricep_50.mat');
+tricep_50_data = tricep_50.data;
+demeaned_tricep_50 = tricep_50_data - mean(tricep_50_data);
+rectified_tricep_50 = abs(demeaned_tricep_50);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_tricep_50 = filtfilt(num,den,rectified_tricep_50);
+figure;plot(rectified_tricep_50);
+title('Rectified EMG Data for Tricep at 50% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_tricep_50,'r');
+title('Enveloped EMG Data for Tricep at 50% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+tricep_75 = load('task1_tricep_75.mat');
+tricep_75_data = tricep_75.data;
+demeaned_tricep_75 = tricep_75_data - mean(tricep_75_data);
+rectified_tricep_75 = abs(demeaned_tricep_75);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_tricep_75 = filtfilt(num,den,rectified_tricep_75);
+figure;plot(rectified_tricep_75);
+title('Rectified EMG Data for Tricep at 75% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_tricep_75,'r');
+title('Enveloped EMG Data for Tricep at 75% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+tricep_100 = load('task1_tricep_100.mat');
+tricep_100_data = tricep_100.data;
+demeaned_tricep_100 = tricep_100_data - mean(tricep_100_data);
+rectified_tricep_100 = abs(demeaned_tricep_100);
+
+dt = 1/1000;
+lpcutoff = 4; % cut off freq of 4Hz
+norder = 4; % order of 4
+[num,den] = butter(norder,2*lpcutoff/(1.0/dt),'low');
+envelope_tricep_100 = filtfilt(num,den,rectified_tricep_100);
+figure;plot(rectified_tricep_100);
+title('Rectified EMG Data for Tricep at 100% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+figure;plot(envelope_tricep_100,'r');
+title('Enveloped EMG Data for Tricep at 100% Intensity','FontSize', 20);
+%xlabel('Sample Index','FontSize', 20); % Label for the x-axis
+ylabel('EMG','FontSize', 20); % Label for the y-axis
+
+
+%% Task 1.2 Time Series Bicep
+%Generates figure for Participant 1, Bicep 0% Intensity
+figure
+a = envelope_bicep_0(1,:);
+x1_b0_1 = (100/(2950-1))*(1:2950-1+1);
+x2_b0_1 = (100/(5900-2951))*(1:5900-2951+1);
+x3_b0_1 = (100/(8850-5901))*(1:8850-5901+1);
+x4_b0_1 = (100/(11800-8851))*(1:11800-8851+1);
+plot (x1_b0_1,a(1:2950));
+hold on
+plot (x2_b0_1,a(2951:5900));
+hold on
+plot (x3_b0_1,a(5901:8850));
+hold on
+plot (x4_b0_1,a(8851:11800));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 0% Intensity, Participant 1','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+%Generates figure for Participant 2, Bicep 0% Intensity
+figure
+a = envelope_bicep_0(1,:);
+x1_b0_2 = (100/(27850-11801))*(1:27850-11801+1);
+x2_b0_2 = (100/(43900-27851))*(1:43900-27851+1);
+x3_b0_2 = (100/(59950-43901))*(1:59950-43901+1);
+x4_b0_2 = (100/(76000-59951))*(1:76000-59951+1);
+plot (x1_b0_2,a(11801:27850));
+hold on
+plot (x2_b0_2,a(27851:43900));
+hold on
+plot (x3_b0_2,a(43901:59950));
+hold on
+plot (x4_b0_2,a(59951:76000));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 0% Intensity, Participant 2','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+% Generates figure for Participant 1, Bicep 25% Intensity
+figure
+b = envelope_bicep_25(1,:);
+x1_b25_1 = (100/(14550-1))*(1:14550-1+1);
+x2_b25_1 = (100/(29100-14551))*(1:29100-14551+1);
+x3_b25_1 = (100/(43650-29101))*(1:43650-29101+1);
+x4_b25_1 = (100/(58200-43651))*(1:58200-43651+1);
+plot (x1_b25_1,b(1:14550));
+hold on
+plot (x2_b25_1,b(14551:29100));
+hold on
+plot (x3_b25_1,b(29101:43650));
+hold on
+plot (x4_b25_1,b(43651:58200));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 25% Intensity, Participant 1','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+% Generates figure for Participant 2, Bicep 25% Intensity
+figure
+b = envelope_bicep_25(1,:);
+x1_b25_2 = (100/(62100-58201))*(1:62100-58201+1);
+x2_b25_2 = (100/(66000-62101))*(1:66000-62101+1);
+x3_b25_2 = (100/(69900-66001))*(1:69900-66001+1);
+x4_b25_2 = (100/(73800-69901))*(1:73800-69901+1);
+plot (x1_b25_2,b(58201:62100));
+hold on
+plot (x2_b25_2,b(62101:66000));
+hold on
+plot (x3_b25_2,b(66001:69900));
+hold on
+plot (x4_b25_2,b(69901:73800));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 25% Intensity, Participant 2','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+% Generates figure for Bicep 50% Intensity
+figure
+c = envelope_bicep_50(1,:);
+x1_b50 = (100/(29150-1))*(1:29150-1+1);
+x2_b50 = (100/(58300-29151))*(1:58300-29151+1);
+x3_b50 = (100/(87450-58301))*(1:87450-58301+1);
+x4_b50 = (100/(116600-87451))*(1:116600-87451+1);
+plot (x1_b50,c(1:29150));
+hold on
+plot (x2_b50,c(29151:58300));
+hold on
+plot (x3_b50,c(58301:87450));
+hold on
+plot (x4_b50,c(87451:116600));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 50% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+%Generates figure for Bicep 75% Intensity
+figure
+d = envelope_bicep_75(1,:);
+x1_b75 = (100/(30050-1))*(1:30050-1+1);
+x2_b75 = (100/(60100-30051))*(1:60100-30051+1);
+x3_b75 = (100/(90150-60101))*(1:90150-60101+1);
+x4_b75 = (100/(120200-90151))*(1:120200-90151+1);
+plot (x1_b75,d(1:30050));
+hold on
+plot (x2_b75,d(30051:60100));
+hold on
+plot (x3_b75,d(60101:90150));
+hold on
+plot (x4_b75,d(90151:120200));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 75% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+%Generates figure for Bicep 100% Intensity
+figure
+e = envelope_bicep_100(1,:);
+x1_b100 = (100/(18950-1))*(1:18950-1+1);
+x2_b100 = (100/(37900-18951))*(1:37900-18951+1);
+x3_b100 = (100/(56850-37901))*(1:56850-37901+1);
+x4_b100 = (100/(75800-56851))*(1:75800-56851+1);
+plot (x1_b100,e(1:18950));
+hold on
+plot (x2_b100,e(18951:37900));
+hold on
+plot (x3_b100,e(37901:56850));
+hold on
+plot (x4_b100,e(56851:75800));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Bicep at 100% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+
+%% Task 1.2 Time Series Tricep
+% Generates figure for Tricep 25% Intensity
+figure
+f = envelope_tricep_25(1,:);
+x1_t25 = (100/(31400-1))*(1:31400-1+1);
+x2_t25 = (100/(62800-31401))*(1:62800-31401+1);
+x3_t25 = (100/(94200-62801))*(1:94200-62801+1);
+x4_t25 = (100/(125600-94201))*(1:125600-94201+1);
+plot (x1_t25,f(1:31400));
+hold on
+plot (x2_t25,f(31401:62800));
+hold on
+plot (x3_t25,f(62801:94200));
+hold on
+plot (x4_t25,f(94201:125600));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Tricep at 25% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+% Generates figure for Tricep 50% Intensity
+figure
+g = envelope_tricep_50(1,:);
+x1_t50 = (100/(22750-1))*(1:22750-1+1);
+x2_t50 = (100/(45500-22751))*(1:45500-22751+1);
+x3_t50 = (100/(68250-45501))*(1:68250-45501+1);
+x4_t50 = (100/(91000-68251))*(1:91000-68251+1);
+plot (x1_t50,g(1:22750));
+hold on
+plot (x2_t50,g(22751:45500));
+hold on
+plot (x3_t50,g(45501:68250));
+hold on
+plot (x4_t50,g(68251:91000));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Tricep at 50% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+%Generates figure for Tricep 75% Intensity
+figure
+h = envelope_tricep_75(1,:);
+x1_t75 = (100/(16350-1))*(1:16350-1+1);
+x2_t75 = (100/(32700-16351))*(1:32700-16351+1);
+x3_t75 = (100/(49050-32701))*(1:49050-32701+1);
+x4_t75 = (100/(65400-49051))*(1:65400-49051+1);
+plot (x1_t75,h(1:16350));
+hold on
+plot (x2_t75,h(16351:32700));
+hold on
+plot (x3_t75,h(32701:49050));
+hold on
+plot (x4_t75,h(49051:65400));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Tricep at 75% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+%Generates figure for Tricep 100% Intensity
+figure
+j = envelope_tricep_100(1,:);
+x1_t100 = (100/(23050-1))*(1:23050-1+1);
+x2_t100 = (100/(46100-23051))*(1:46100-23051+1);
+x3_t100 = (100/(69150-46101))*(1:69150-46101+1);
+x4_t100 = (100/(92200-69151))*(1:92200-69151+1);
+plot (x1_t100,j(1:23050));
+hold on
+plot (x2_t100,j(23051:46100));
+hold on
+plot (x3_t100,j(46101:69150));
+hold on
+plot (x4_t100,j(69151:92200));
+xlim([0 100]);
+title('Time Series for Filtered EMG Data in Tricep at 100% Intensity','FontSize', 20);
+legend('Trial 1','Trial 2','Trial 3','Trial 4');
+xlabel('% Time','FontSize', 20);
+ylabel('EMG','FontSize', 20);
+hold on
+
+
+%% Task 1.4 Root-Mean-Square
+b0_rms = rms(envelope_bicep_0,"all");
+b25_rms = rms(envelope_bicep_25,"all");
+b50_rms = rms(envelope_bicep_50,"all");
+b75_rms = rms(envelope_bicep_75,"all");
+b100_rms = rms(envelope_bicep_100,"all");
+
+t25_rms = rms(envelope_tricep_25,"all");
+t50_rms = rms(envelope_tricep_50,"all");
+t75_rms = rms(envelope_tricep_75,"all");
+t100_rms = rms(envelope_tricep_100,"all");
+
+norm_b0_rms = b0_rms/b100_rms;
+norm_b25_rms = b25_rms/b100_rms;
+norm_b50_rms = b50_rms/b100_rms;
+norm_b75_rms = b75_rms/b100_rms;
+norm_b100_rms = b100_rms/b100_rms;
+
+norm_t25_rms = t25_rms/t100_rms;
+norm_t50_rms = t50_rms/t100_rms;
+norm_t75_rms = t75_rms/t100_rms;
+norm_t100_rms = t100_rms/t100_rms;
+
+
+%% Task 1.5 and 1.6 Plotting RMS Values and R-squared values
+x_bicep = [0,25,50,75,100];
+y_bicep = [norm_b0_rms,norm_b25_rms,norm_b50_rms,norm_b75_rms,norm_b100_rms];
+
+x_tricep = [25,50,75,100];
+y_tricep = [norm_t25_rms,norm_t50_rms,norm_t75_rms,norm_t100_rms];
+
+% Plots trendline on graphs
+p_bicep = polyfit(x_bicep, y_bicep, 1);
+p_tricep = polyfit(x_tricep, y_tricep, 1);
+x_fit_bicep = linspace(min(x_bicep), max(x_bicep), 100); % Smooth x-values 
+y_fit_bicep = polyval(p_bicep, x_fit_bicep); 
+x_fit_tricep = linspace(min(x_tricep), max(x_tricep), 100);
+y_fit_tricep = polyval(p_tricep, x_fit_tricep); % Plot trendlines 
+
+% Calculates R-squared value for bicep
+y_pred_bicep = polyval(p_bicep, x_bicep); % Compute R-squared 
+SS_res_bicep = sum((y_bicep - y_pred_bicep).^2); % Residual sum of squares 
+SS_tot_bicep = sum((y_bicep - mean(y_bicep)).^2); % Total sum of squares 
+R_squared_bicep = 1 - (SS_res_bicep / SS_tot_bicep);
+textString_bicep = sprintf('R-squared Value: %.4f', R_squared_bicep); 
+
+% Calculates R-squared value for tricep
+y_pred_tricep = polyval(p_tricep, x_tricep); % Compute R-squared 
+SS_res_tricep = sum((y_tricep - y_pred_tricep).^2); % Residual sum of squares 
+SS_tot_tricep = sum((y_tricep - mean(y_tricep)).^2); % Total sum of squares 
+R_squared_tricep = 1 - (SS_res_tricep / SS_tot_tricep);
+textString_tricep = sprintf('R-squared Value: %.4f', R_squared_tricep); 
+
+figure
+scatter(x_bicep,y_bicep,200,"filled");
+annotation('textbox', [0.2, 0.8, 0.1, 0.1], 'String', textString_bicep, 'FontSize', 20, 'EdgeColor', 'black');
+hold on
+plot(x_fit_bicep, y_fit_bicep, 'k-', 'LineWidth', 2);
+title('% MVC vs Normalized RMS Values for Bicep Data','FontSize', 20);
+xlabel('% MVC','FontSize', 20);
+ylabel('Normalized RMS Values','FontSize', 20);
+
+figure
+scatter(x_tricep,y_tricep,200,"filled",'r');
+annotation('textbox', [0.2, 0.8, 0.1, 0.1], 'String', textString_tricep, 'FontSize', 20, 'EdgeColor', 'black');
+hold on
+plot(x_fit_tricep, y_fit_tricep, 'k-', 'LineWidth', 2);
+title('% MVC vs Normalized RMS Values for Tricep Data','FontSize', 20);
+xlabel('% MVC','FontSize', 20);
+ylabel('Normalized RMS Values','FontSize', 20);
